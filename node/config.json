@@ -1,0 +1,5 @@
+{
+    "port": 1337,
+    "contentDirecotry" : "content/",
+    "presentationDirectory" : "presentation/"
+}

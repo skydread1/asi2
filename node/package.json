@@ -1,0 +1,16 @@
+{
+  "name": "tp_starter",
+  "version": "1.0.0",
+  "description": "**TOUS LES FICHIERS JAVASCRIPT (_*.js_) DOIVENT COMMENCER PAR `'use strict';`**",
+  "main": "testContentModel.js",
+  "scripts": {
+    "test": "node testContentModel.js",
+    "start": "node app.js"
+    },
+    "private": true,
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
