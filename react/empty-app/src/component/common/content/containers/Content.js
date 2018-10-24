@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import onlyContent from './containers/onlyContent';
-import allProperties from './containers/allProperties';
-import { connect } from 'react-redux';
+import OnlyContent from '../components/OnlyContent';
 
 class Content extends Component {
-
     //class constructor whith given properties
     constructor(props) {
         super(props);
@@ -14,18 +11,16 @@ class Content extends Component {
 
     return (
             <div className="panel only-content">
-                <div className="panel-body">
-                    <Visual 
-                        type={this.contentMap.type} 
-                        src={this.props.robot.visual_src} 
+                    <OnlyContent 
+                        type={this.props.content.type} 
+                        src={this.props.content.src} 
+                        boolean={this.props.boolean}
+                        title={this.props.content.title}
                     />
-                </div>
             </div>
     );
   }
 }
 
 
-export default connect()(Robot);
-
-//export default Robot;
+export default Content;
