@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import EditMetaSlid from '../components/EditMetaSlid'
-
+import Content from '../../content/containers/Content'
 class Slid extends Component {
     constructor(props) {
         super(props);
     }
     
+    getContentMap(){
+        let map=this.props.contentMap;
+        for(var key in map)
+        {
+            if(key==this.props.slid.id) return map[key];
+        }
+    }
+
     render() {
         let short_content;
         switch(this.props.displayMode){
@@ -26,10 +34,14 @@ class Slid extends Component {
                     );
             break;
                 }
-  
+        let contentMap=this.getContentMap();
       return (
               <div className="shortContent">
                   {short_content}
+                  <Content
+                    content={contentMap}
+                    boolean={1}
+                 />
               </div>            
       );
     };

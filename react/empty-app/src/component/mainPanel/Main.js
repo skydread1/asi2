@@ -25,7 +25,8 @@ export default class Main extends React.Component {
                     </div>
                     <div className='col-md-6 col-lg-6 height-100'>
                     <Slid slid={this.state.content_pres.slidArray[0]}
-                    displayMode={'SHORT'}/>                 
+                    displayMode={'FULL_MNG'}
+                    contentMap={this.state.content_list}/>                 
                     </div>
                     <div className='col-md-3 col-lg-3 height-100'>
                     <BrowseContentpanel content={this.state.content_list}/>              
