@@ -1,0 +1,4 @@
+webRest/WatcherAuth.class
+webRest/UserLogin.class
+webRest/JaxRsActivator.class
+webRest/IWatcherAuth.class

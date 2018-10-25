@@ -5,10 +5,10 @@ import './browseContentPanel.css';
 class BrowseContentpanel extends Component {
     //class constructor whith given properties
     constructor(props) {
-        super(props);        
+        super(props);
         this.getAllContent=this.getAllContent.bind(this);
     }
-  
+
  getAllContent(){
      let array_render=[];
      let map=this.props.content;
@@ -24,7 +24,7 @@ class BrowseContentpanel extends Component {
      }
      return array_render;
  }
-    
+
   //render function use to update the virtual dom
   render() {
       const display_list= this.getAllContent();

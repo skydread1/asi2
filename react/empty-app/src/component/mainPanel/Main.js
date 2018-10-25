@@ -16,30 +16,30 @@ export default class Main extends React.Component {
         this.state = {
             content_list:temp_content_list,
             content_pres:pres_content,
-        }; 
+        };
     }
     render() {
         return (
             <div className='container-fluid height-100'>
                 <div className="row height-100">
-                    <div className='col-md-3 col-lg-3 height-100 vertical-scroll'>   
+                    <div className='col-md-3 col-lg-3 height-100 vertical-scroll'>
                     <Presentation
                         contentPres={this.state.content_pres}
-                        contentMap={this.state.content_list} 
+                        contentMap={this.state.content_list}
                     />
                     </div>
                     <div className='col-md-6 col-lg-6 height-100'>
-                    <Slid 
+                    <Slid
                         slid={this.state.content_pres.slidArray[0]}
                         displayMode={'FULL_MNG'}
-                        contentMap={this.state.content_list}/>    
-                    <Slid 
+                        contentMap={this.state.content_list}/>
+                    <Slid
                         slid={this.state.content_pres.slidArray[0]}
                         displayMode={'SHORT'}
-                        contentMap={this.state.content_list}/>                 
+                        contentMap={this.state.content_list}/>
                     </div>
                     <div className='col-md-3 col-lg-3 height-100'>
-                    <BrowseContentpanel content={this.state.content_list}/>              
+                    <BrowseContentpanel content={this.state.content_list}/>
                     </div>
                 </div>
             </div>
