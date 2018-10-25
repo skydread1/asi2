@@ -4,15 +4,11 @@ import Content from '../../content/containers/Content'
 class Slid extends Component {
     constructor(props) {
         super(props);
-<<<<<<< HEAD
         this.getContentMap=this.getContentMap.bind(this);
-=======
->>>>>>> a84af2eb91c5b76996564202ca070588c562a8df
     }
     
     getContentMap(){
         let map=this.props.contentMap;
-<<<<<<< HEAD
         let array=[];
         for(var key in map)
         {
@@ -26,12 +22,6 @@ class Slid extends Component {
             } 
         }
         return array;
-=======
-        for(var key in map)
-        {
-            if(key==this.props.slid.id) return map[key];
-        }
->>>>>>> a84af2eb91c5b76996564202ca070588c562a8df
     }
 
     render() {
@@ -54,22 +44,11 @@ class Slid extends Component {
                     );
             break;
                 }
-<<<<<<< HEAD
       const display_content= this.getContentMap();
       return (
               <div className="shortContent">
                   {short_content}
                   {display_content}
-=======
-        let contentMap=this.getContentMap();
-      return (
-              <div className="shortContent">
-                  {short_content}
-                  <Content
-                    content={contentMap}
-                    boolean={1}
-                 />
->>>>>>> a84af2eb91c5b76996564202ca070588c562a8df
               </div>            
       );
     };

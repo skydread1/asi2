@@ -6,6 +6,8 @@ import * as contentPres from '../../lib/source/pres.json';
 import BrowseContentpanel from '../browseContentPanel/containers/BrowseContentpanel';
 import Slid from '../common/slid/containers/Slid'
 import Presentation from '../common/presentation/containers/Presentation';
+import EditSlidPanel from '../editSlidPanel/containers/EditSlidPanel';
+
 export default class Main extends React.Component {
     constructor(props) {
         super(props);
@@ -37,6 +39,10 @@ export default class Main extends React.Component {
                         slid={this.state.content_pres.slidArray[0]}
                         displayMode={'SHORT'}
                         contentMap={this.state.content_list}/>
+
+                    <EditSlidPanel
+                        selected_slid = {this.state.content_pres.slidArray[0]}
+                        contentMap = {this.state.content_list}/>
                     </div>
                     <div className='col-md-3 col-lg-3 height-100'>
                     <BrowseContentpanel content={this.state.content_list}/>

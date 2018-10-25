@@ -10,8 +10,6 @@ class SlidList extends Component {
     
     getAllContent(){
         let array_render=[];
-        let list=this.props.slid_content.slidArray;
-
         for(var i=0;i<this.props.slid_content.slidArray.length;i++)
         {
             array_render.push(
