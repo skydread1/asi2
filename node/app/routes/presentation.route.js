@@ -53,10 +53,6 @@ router.route('/loadPres')
     .all(function (request, response) { })
 
 router.route("/savePres")
-    .get(function (request, response) { })
-    .post(function (request, response) {     
-        response.send(JSON.parse(request.body)); 
+    .post(function (request, response) {   
+        response.send(request.body); 
     })
-    .put(function (request, response) { })
-    .delete(function (request, response) { })
-    .all(function (request, response) { })

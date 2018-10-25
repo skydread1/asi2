@@ -1,5 +1,6 @@
 console.log('It Works !')
 
+var bodyParser = require('body-parser')
 var express = require("express");
 var app = express();
 
@@ -13,7 +14,7 @@ server.listen(CONFIG.port);
 //pour que la config soit accessible par tous les modules
 var CONFIG = require("./config.json");
 process.env.CONFIG = JSON.stringify(CONFIG);
-
+app.use(bodyParser.json());
 //router path
 var defaultRoute = require("./app/routes/default.route.js");
 var presentationRoute = require("./app/routes/presentation.route.js");

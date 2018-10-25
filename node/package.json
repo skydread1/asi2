@@ -6,11 +6,12 @@
   "scripts": {
     "test": "node testContentModel.js",
     "start": "node app.js"
-    },
-    "private": true,
+  },
+  "private": true,
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "body-parser": "1.18.3"
   }
 }
