@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Content from '../../common/content/containers/Content';
-import './browseContentPanel.css';
 
-class BrowseContentpanel extends Component {
+class DisplayContent extends Component {
     //class constructor whith given properties
     constructor(props) {
         super(props);        
@@ -11,16 +10,14 @@ class BrowseContentpanel extends Component {
   
  getAllContent(){
      let array_render=[];
-     let map=this.props.content;
-     for(var key in map)
-     {
-        array_render.push(
-            <Content
-               key={key}
-               content={map[key]}
-               boolean={1}
-            />
-            );
+     
+     for(var i=0;i<this.props.content.temp.length;i++){
+         array_render.push(
+             <Content
+                content={this.props.content.temp[i]}
+                boolean={1}
+             />
+             );
      }
      return array_render;
  }
@@ -29,12 +26,12 @@ class BrowseContentpanel extends Component {
   render() {
       const display_list= this.getAllContent();
     return (
-            <div class="vertical-scroll">
+            <div>
                {display_list}
-           </div>
+            </div>
     );
   }
 }
 
 //export the current classes in order to be used outside
-export default BrowseContentpanel;
+export default DisplayContent;

@@ -13,6 +13,7 @@ class AllProperties extends Component {
                 </div>
  
     );
+    return(null);
   }
 }
 

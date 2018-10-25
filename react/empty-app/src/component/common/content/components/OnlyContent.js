@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AllProperties from './allProperties';
+import AllProperties from './AllProperties';
 
-class onlyContent extends Component {
+class OnlyContent extends Component {
    //class constructor whith given properties
    constructor(props) {
     super(props);
@@ -10,6 +10,14 @@ class onlyContent extends Component {
   render() {
       let render_visual;
       switch(this.props.type){
+        case "img":
+            render_visual=(
+                <img 
+                    className='imgCard' 
+                    src={this.props.src}  
+                />
+                );
+        break;
         case "img_url":
             render_visual=(
                 <img 
@@ -26,6 +34,12 @@ class onlyContent extends Component {
                 );
                 
         break;
+        case "web":
+        render_visual=(
+        <iframe src={this.props.src} />
+          );
+          
+  break;
               
         }
       
@@ -42,3 +56,5 @@ class onlyContent extends Component {
     );
   }
 }
+
+export default OnlyContent;
