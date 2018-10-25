@@ -1,12 +1,27 @@
 package webRest;
 
-import javax.ws.rs.QueryParam;
-import java.util.List;
 
-public class WatcherAuth implements IWatcherAuth{
 
-    public UserModel add(List<String> a){
-        UserModel userModel = new UserModel(a.get(0),a.get(1));
+import EJBclient.IEJBsender;
+import EJBclient.IEJBreceiver;
+import model.UserModel;
+
+import javax.inject.Inject;
+
+
+public class WatcherAuth implements IWatcherAuth {
+
+    public UserModel add(UserLogin userLogin) {
+        UserModel userModel = new UserModel(userLogin.getLogin(), userLogin.getPwd());
         return userModel;
     }
+
+    //crash the deployment
+    @Inject
+    private IEJBsender iejbSender;
+
+    @Inject
+    private IEJBreceiver iejbReceiver;
+
 }
+
