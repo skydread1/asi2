@@ -10,9 +10,7 @@ class Presentation extends Component {
        return (
             <div>
                 <EditMetaPres/>
-                <SlidList
-                        slid_content={this.props.contentPres}
-                        contentMap={this.props.contentMap}/>
+                <SlidList/>
             </div>
        );
     };

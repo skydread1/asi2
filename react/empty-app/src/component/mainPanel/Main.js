@@ -14,6 +14,7 @@ import EditSlidPanel from '../editSlidPanel/containers/EditSlidPanel';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import globalReducer from '../../reducers';
+import {updateContentMap,updatePresentation} from '../../actions';
 
 const store = createStore(globalReducer);
 
@@ -28,6 +29,8 @@ export default class Main extends React.Component {
             content_list: temp_content_list,
             content_pres: pres_content,
         };
+        store.dispatch(updateContentMap(contentMapTmp));
+        store.dispatch(updatePresentation(contentPres));
     }
     render() {
         return (
@@ -36,18 +39,16 @@ export default class Main extends React.Component {
                     <div className="row height-100">
                         <div className='col-md-3 col-lg-3 height-100 vertical-scroll'>
                             <Presentation
-                                contentPres={this.state.content_pres}
-                                contentMap={this.state.content_list}
                             />
                         </div>
                         <div className='col-md-6 col-lg-6 height-100'>
                             <EditSlidPanel
                                 selected_slid={this.state.content_pres.slidArray[0]}
-                                contentMap={this.state.content_list}
                              />
                         </div>
                         <div className='col-md-3 col-lg-3 height-100'>
-                            <BrowseContentpanel content={this.state.content_list} />
+                            <BrowseContentpanel
+                             />
                         </div>
                     </div>
                 </div>

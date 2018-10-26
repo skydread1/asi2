@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Slid from '../../slid/containers/Slid';
 
 class SlidList extends Component {
@@ -10,14 +11,13 @@ class SlidList extends Component {
     
     getAllContent(){
         let array_render=[];
-        for(var i=0;i<this.props.slid_content.slidArray.length;i++)
+        for(var i=0;i<this.props.contentPres.slidArray.length;i++)
         {
             array_render.push(
                 <Slid
                     key={i}
-                    slid={this.props.slid_content.slidArray[i]}
+                    slid={this.props.contentPres.slidArray[i]}
                     displayMode={'SHORT'}
-                    contentMap={this.props.contentMap}
                 />
                 );
         }
@@ -36,5 +36,11 @@ class SlidList extends Component {
   }
 }
 
+const mapStateToProps = (state, ownProps) => {
+    return {
+        contentPres: state.updateModelReducer.presentation
+    }
+};
+
 //export the current classes in order to be used outside
-export default SlidList;
+export default connect(mapStateToProps) (SlidList);

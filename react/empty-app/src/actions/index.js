@@ -25,5 +25,19 @@ export const updateContentMap = (content_obj) => {
     return {
         type: 'UPDATE_CONTENT_MAP',
         obj: content_obj
-    }
+    };
+}
+
+export const updatePresentation = (pres_obj) => {
+    return {
+        type: 'UPDATE_PRESENTATION',
+        obj: pres_obj
+    };
+}
+
+export const updateSlid = (slid_obj) => {
+    return {
+        type: 'UPDATE_PRESENTATION_SLIDS',
+        obj: slid_obj
+    };
 }

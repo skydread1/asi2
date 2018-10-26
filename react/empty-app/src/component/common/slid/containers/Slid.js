@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {setSelectedSlid } from '../../../../actions'
+import {setSelectedSlid } from '../../../../actions';
 
-import EditMetaSlid from '../components/EditMetaSlid'
-import Content from '../../content/containers/Content'
+import EditMetaSlid from '../components/EditMetaSlid';
+import Content from '../../content/containers/Content';
 class Slid extends Component {
     constructor(props) {
         super(props);
@@ -11,7 +11,7 @@ class Slid extends Component {
         this.updateSelectedSlid=this.updateSelectedSlid.bind(this);
     }
 
-    //déclencher l’action créé lors d’un clic sur la div du slid
+    //actiion: on click on a slid in presentation, we update the slid in editSlidPanel
     updateSelectedSlid() {
         const tmpSlid = {
             id: this.props.slid.id,
@@ -69,7 +69,7 @@ class Slid extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        contentMap: state.selectedReducer.slid
+        contentMap: state.updateModelReducer.content_map
     }
 };
 

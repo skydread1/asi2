@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Content from '../../common/content/containers/Content';
 import './browseContentPanel.css';
 
@@ -9,9 +10,10 @@ class BrowseContentpanel extends Component {
         this.getAllContent=this.getAllContent.bind(this);
     }
 
+
  getAllContent(){
      let array_render=[];
-     let map=this.props.content;
+     let map=this.props.contentMap;
      for(var key in map)
      {
         array_render.push(
@@ -36,5 +38,12 @@ class BrowseContentpanel extends Component {
   }
 }
 
+const mapStateToProps = (state, ownProps) => {
+    return {
+        contentMap: state.updateModelReducer.content_map
+    }
+};
+
+
 //export the current classes in order to be used outside
-export default BrowseContentpanel;
+export default connect(mapStateToProps) (BrowseContentpanel);
