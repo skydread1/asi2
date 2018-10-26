@@ -1,5 +1,6 @@
 'use strict';
-
+var fs = require("fs");
+var path = require("path");
 var CONFIG = require("./config.json");
 process.env.CONFIG = JSON.stringify(CONFIG);
 
@@ -9,7 +10,7 @@ var ContentModel = require("./app/models/content.model.js");
 var content = new ContentModel({});
 
 content.id = utils.generateUUID();
-content.type = "myType";
+content.type = "img";
 content.title = "myTitle";
 content.fileName = content.id + ".txt";
 content.setData("It Works !");
@@ -196,15 +197,15 @@ function logError(err) {
 			logError(err);
 			return Promise.reject(new Error("========== TESTS PHASE 1 : KO =========="));
 		})
-		.then(testErr)
-		.then(function() {
-			console.log("========== TESTS PHASE 2 : OK ==========");
-		}, function(err) {
-			return Promise.reject((!!err) ? err : new Error("========== TESTS PHASE 2 : KO =========="));
-		})
-		.then(function() {
-			console.log("========== FIN TESTS ==========");
-		}, function(err) {
-			console.log(err.message);
-		});
+		// .then(testErr)
+		// .then(function() {
+		// 	console.log("========== TESTS PHASE 2 : OK ==========");
+		// }, function(err) {
+		// 	return Promise.reject((!!err) ? err : new Error("========== TESTS PHASE 2 : KO =========="));
+		// })
+		// .then(function() {
+		// 	console.log("========== FIN TESTS ==========");
+		// }, function(err) {
+		// 	console.log(err.message);
+		// });
 })();

@@ -45,14 +45,30 @@ router.route('/loadPres')
                 });
             });
         });
-    })
-
-    .post(function (request, response) { })
-    .put(function (request, response) { })
-    .delete(function (request, response) { })
-    .all(function (request, response) { })
+    });
 
 router.route("/savePres")
-    .post(function (request, response) {   
-        response.send(request.body); 
+    .post(function (request, response) { 
+        let body = "";
+        let chaine;
+        request.on("data", (chunk) => {
+            body += chunk;
+        });
+
+        request.on("end", () => {
+            
+            let json=JSON.parse(body);
+            let id=json["id"];
+            let urlJson=CONFIG.presentationDirectory+'/'+id+'.pres.json';
+            
+            fs.writeFile(urlJson,body,'utf8',(err)=>{
+                if (err) {
+                    console.error(err);
+                    return;
+                };
+                console.log('fichier enregistré');
+                response.send(json);
+            })  
+        })   
+        
     })
