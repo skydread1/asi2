@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import './editMetaSlid.css'
-export default class EditMetaSlid extends React.Component {
+class EditMetaSlid extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -29,4 +31,7 @@ export default class EditMetaSlid extends React.Component {
     );
 }
 }
+
+
+export default connect()(EditMetaSlid);
       

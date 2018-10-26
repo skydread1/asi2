@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import Slid from '../../common/slid/containers/Slid'
 
 class EditSlidPanel extends Component {
     constructor(props) {
         super(props);
+        this.state = {};
     }
     
     
@@ -20,5 +23,11 @@ class EditSlidPanel extends Component {
     };
 }
 
+const mapStateToProps = (state, ownProps) => {
+    return {
+        selected_slid: state.selectedReducer.slid
+    }
+};
 
-export default EditSlidPanel;
+
+export default connect(mapStateToProps)(EditSlidPanel);
