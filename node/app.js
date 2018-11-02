@@ -8,6 +8,7 @@ var path = require("path");
 var http = require("http");
 var express = require("express");
 var defaultRoute = require("./app/routes/default.route.js");
+var contentRoute = require("./app/routes/content.route.js");
 var presentationRoute = require("./app/routes/presentation.route.js");
 
 // init server
@@ -16,6 +17,7 @@ var server = http.createServer(app);
 
 //router path
 app.use(defaultRoute);
+app.use(contentRoute);
 app.use(presentationRoute);
 
 //routes statiques pour admin et watch

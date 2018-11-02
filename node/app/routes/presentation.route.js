@@ -10,7 +10,7 @@ module.exports = router;
 // TODO : Routing using
 router.route('/loadPres')
     .get(function (request, response) {
-        fs.readdir(CONFIG.presentationDirectory, function (err, data) {
+        fs.readdir(CONFIG.contentDirectory, function (err, data) {
             if (err) {
                 response.end(err);
             }
@@ -29,7 +29,7 @@ router.route('/loadPres')
             var read = [] //just to check the length to synchronize the asynch requests
             var result = {} //json content
             toRead.forEach(function (element) {
-                var url = CONFIG.presentationDirectory + element;
+                var url = CONFIG.contentDirectory + element;
                 fs.readFile(url, 'utf8', function (err, data) {
                     data = JSON.parse(data)
                     if (err) {
