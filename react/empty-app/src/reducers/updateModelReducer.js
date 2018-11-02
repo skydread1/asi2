@@ -9,7 +9,7 @@ const updateModelReducer = (state = { presentation: {}, content_map: {} }, actio
         case 'UPDATE_PRESENTATION_SLIDS':
             const newPresentation = JSON.parse(JSON.stringify(state.presentation));
             for(var i=0; i<newPresentation.slidArray.length;i++){
-                if(newPresentation.slidArray[i].id == action.obj.id){
+                if(newPresentation.slidArray[i].id === action.obj.id){
                     newPresentation.slidArray[i] = action.obj;
                 }
             }

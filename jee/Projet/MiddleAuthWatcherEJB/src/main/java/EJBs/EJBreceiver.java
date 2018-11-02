@@ -19,7 +19,6 @@ public class EJBreceiver implements IEJBreceiver {
     JMSContext context;
 
     @Resource(mappedName = "java:/jms/queue/watcherqueue")
-
     private Queue queue;
 
     public UserModel receiveUser() {

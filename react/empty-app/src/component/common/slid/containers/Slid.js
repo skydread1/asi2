@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {setSelectedSlid } from '../../../../actions';
+import {updateSlid } from '../../../../actions';
 
 import EditMetaSlid from '../components/EditMetaSlid';
 import Content from '../../content/containers/Content';
@@ -9,9 +10,33 @@ class Slid extends Component {
         super(props);
         this.getContentMap = this.getContentMap.bind(this);
         this.updateSelectedSlid=this.updateSelectedSlid.bind(this);
+        this.updateCurrentSlid=this.updateCurrentSlid.bind(this);
+        this.handleChangeTitle=this.handleChangeTitle.bind(this);
+        this.handleChangeText=this.handleChangeText.bind(this);
     }
 
-    //actiion: on click on a slid in presentation, we update the slid in editSlidPanel
+    ///handle title
+    handleChangeTitle = (e) =>{
+        this.updateCurrentSlid();
+    }
+
+    //handle text
+    handleChangeText = (e) =>{
+        this.updateCurrentSlid();
+    }
+
+    //action: on change, uodate the slid in presentation
+    updateCurrentSlid(){
+        const tmpSlid2 = {
+            id: this.props.slid.id,
+            title: this.props.slid.title,
+            txt: this.props.slid.txt,
+            content_id: this.props.slid.content_id
+        };
+        this.props.dispatch(updateSlid(tmpSlid2)); 
+    }
+
+    //action: on click on a slid in presentation, we update the slid in editSlidPanel
     updateSelectedSlid() {
         const tmpSlid = {
             id: this.props.slid.id,
@@ -22,6 +47,7 @@ class Slid extends Component {
         this.props.dispatch(setSelectedSlid(tmpSlid));
     }
 
+    //get the content from a specific slide
     getContentMap() {
         let map = this.props.contentMap;
         let array = [];
@@ -29,6 +55,7 @@ class Slid extends Component {
             if (key === this.props.slid.content_id) {
                 array.push(
                     <Content
+                        key={key}
                         content={map[key]}
                         boolean={1}
                     />)
@@ -42,7 +69,11 @@ class Slid extends Component {
         switch (this.props.displayMode) {
             case "FULL_MNG":
                 short_content = (
-                    <EditMetaSlid 
+                    <EditMetaSlid
+                    title = {this.props.slid.title}
+                    txt = {this.props.slid.txt}
+                    handleChangeTitle = {this.handleChangeTitle}
+                    handleChangeText = {this.handleChangeText}
                     />
                 );
                 break;
@@ -56,10 +87,15 @@ class Slid extends Component {
                 </div>
                 );
                 break;
+            default:
+                short_content = (
+                    <div>Error displayMode format</div>
+                );
         }
         const display_content = this.getContentMap();
         return (
-            <div className="shortContent" onClick={()=>{this.updateSelectedSlid()}}>
+            <div className="shortContent" 
+            onClick={()=>{this.updateSelectedSlid()}}>
                 {short_content}
                 {display_content}
             </div>
@@ -68,6 +104,7 @@ class Slid extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+
     return {
         contentMap: state.updateModelReducer.content_map
     }

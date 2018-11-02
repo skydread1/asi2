@@ -7,7 +7,6 @@ import * as contentMapTmp from '../../lib/source/contentMap.json';
 import * as contentPres from '../../lib/source/pres.json';
 
 import BrowseContentpanel from '../browseContentPanel/containers/BrowseContentpanel';
-import Slid from '../common/slid/containers/Slid'
 import Presentation from '../common/presentation/containers/Presentation';
 import EditSlidPanel from '../editSlidPanel/containers/EditSlidPanel';
 
@@ -43,7 +42,7 @@ export default class Main extends React.Component {
                         </div>
                         <div className='col-md-6 col-lg-6 height-100'>
                             <EditSlidPanel
-                                selected_slid={this.state.content_pres.slidArray[0]}
+                                //selected_slid={this.state.content_pres.slidArray[0]}
                              />
                         </div>
                         <div className='col-md-3 col-lg-3 height-100'>

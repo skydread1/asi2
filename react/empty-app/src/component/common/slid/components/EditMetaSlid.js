@@ -7,6 +7,11 @@ class EditMetaSlid extends React.Component {
         super(props);
     }
 
+    onChange() {
+        this.setState({ checked: !this.state.checked });
+        console.log('onChange');
+    }
+
     render() {
     return(
             <div className="form-group">
@@ -16,7 +21,7 @@ class EditMetaSlid extends React.Component {
                     className="form-control" 
                     id="currentSlideTitle"
                     onChange={this.props.handleChangeTitle}
-                    value={this.props.title}
+                    //value={this.props.title}
                     />
                 <label htmlFor="currentSlideText">Text</label>
                 <textarea 
@@ -25,7 +30,8 @@ class EditMetaSlid extends React.Component {
                     className="form-control"
                     id="currentSlideText"
                     onChange={this.props.handleChangeTxt}
-                    value={this.props.txt}>
+                    //value={this.props.txt}
+                    >
                 </textarea>
             </div>
     );

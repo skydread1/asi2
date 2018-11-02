@@ -16,7 +16,7 @@ const valueListReducer= (state={valueList:[]},action) => {
 
                 //copy every thing except the value to remove
                 for(let i=0; i<state.valueList.length;i++){
-                        if(state.valueList[i]!=action.item){
+                        if(state.valueList[i]!==action.item){
                             newValueListR.push(state.valueList[i]);
                         }
                     }

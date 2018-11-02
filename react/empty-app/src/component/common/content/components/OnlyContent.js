@@ -38,8 +38,10 @@ class OnlyContent extends Component {
         render_visual=(
         <iframe src={this.props.src} />
           );
-          
-  break;
+        break;
+        default:
+        <div>Error source format</div>   
+        break;
               
         }
       

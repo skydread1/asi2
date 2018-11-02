@@ -1,33 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {updateSlid } from '../../../actions';
+
 
 import Slid from '../../common/slid/containers/Slid'
 
 class EditSlidPanel extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
-        this.updateCurrentSlid=this.updateCurrentSlid.bind(this);
     }
     
-    //on change, uodate the slid in presentation
-    updateCurrentSlid(id,title,txt,content_id){
-        const tmpSlid = {
-            id: id,
-            title: title,
-            txt: txt,
-            content_id: content_id
-        };
-        this.props.dispatch(updateSlid(tmpSlid));
-        
+    onChange() {
+        this.setState({ checked: !this.state.checked });
+        console.log('onChange');
     }
+
     
     render() {
       return (
-              <div className="editSlidPanel" onChange={()=>{this.updateCurrentSlid(this.props.selected_slid.id, this.props.selected_slid.title, this.props.selected_slid.txt, this.props.selected_slid.content_id)}}>
-                  <Slid
-                    contentMap = {this.props.contentMap}
+              <div className="editSlidPanel"> 
+                  <Slid 
                     slid = {this.props.selected_slid}
                     displayMode = {'FULL_MNG'}
                   />
@@ -37,10 +28,17 @@ class EditSlidPanel extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+    let mySelectedSlid = {};
+    for (let slidTmp in state.updateModelReducer.presentation.slidArray) {
+        if (state.updateModelReducer.presentation.slidArray[slidTmp].id === state.selectedReducer.slid.id) {
+            mySelectedSlid = state.updateModelReducer.presentation.slidArray[slidTmp];
+        }
+    }
+
     return {
-        selected_slid: state.selectedReducer.slid
+        selected_slid: mySelectedSlid
     }
 };
 
-
 export default connect(mapStateToProps)(EditSlidPanel);
+

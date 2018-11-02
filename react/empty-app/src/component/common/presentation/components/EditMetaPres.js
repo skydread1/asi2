@@ -18,7 +18,7 @@ export default class EditMetaPres extends React.Component {
                     />
                 <label htmlFor="currentPresText">Text</label>
                 <textarea 
-                    row="5"
+                    //row="5"
                     type="text"
                     className="form-control"
                     id="currentPresText"
