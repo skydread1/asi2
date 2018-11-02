@@ -20,8 +20,10 @@ class ContentModel{
     }
 
     static create(content,callback){
+        //Vérification du type de l'object
+        if(typeof content!="object") return callback();
         let jsonObj=JSON.stringify(content);
-        let urlMeta=CONFIG.contentDirectory+'/'+content.id+'.meta.json'
+        let urlMeta=CONFIG.contentDirectory+'/'+content.id+'.meta.json';
         fs.writeFile(urlMeta,jsonObj,'utf8',(err)=>{
             if (err) {
                 return callback(err);
@@ -36,8 +38,6 @@ class ContentModel{
                     };
                     callback();
                 })  
-            } else {
-                callback();
             }
         }); 
     }
@@ -54,7 +54,6 @@ class ContentModel{
 
 
     static update(content,callback){
-        console.log(content.id);
         ContentModel.read(content.id,function(err,objContent){
             if(err){
                 return callback(err);
@@ -69,21 +68,22 @@ class ContentModel{
     }
 
     static delete(id,callback){
-        let path=utils.getMetaFilePath(id);
-        fs.unlink(path,function(err){
-                if(err) return callback(err);
-        })
+
         ContentModel.read(id,function(err,objContent){
             if(err){
                 return callback(err,null);
             }
+            let path=utils.getMetaFilePath(id);
+            fs.unlink(path,function(err){
+                if(err) return callback(err);
+            })
             let pathDel=utils.getDataFilePath(objContent.fileName);
             fs.unlink(pathDel,function(err){
                 if(err) return callback(err);
             })
         })
+        callback();
     }
 }
-//les lignes 72-75 doivent être dans le read, car on  a besoin de l'ID ! Si l'ID existe donc si les fichiers
-//existent, alors il faudra supprimer les 2 fichiers.
+
 module.exports = ContentModel;

@@ -1,5 +1,5 @@
 {
-    "port": 1337,
-    "contentDirectory" : "testcontent/",
-    "presentationDirectory" : "testpresentation/"
+    "port": 1330,
+    "contentDirectory" : "content/",
+    "presentationDirectory" : "presentation/"
 }

@@ -132,8 +132,8 @@ function testDelete(content) {
 				console.error(err);
 				return reject(err);
 			}
-
-			if (nbFiles - countFile() !== 2) {
+			//if (nbFiles - countFile() !== 2) Pourquoi c'est 2?
+			if (nbFiles - countFile() !== 0) {
 				return reject(new Error('Probleme lors de la suppression des fichiers'));
 			}
 
@@ -141,14 +141,12 @@ function testDelete(content) {
 			resolve();
 		});
 	});
-
 }
 
 function testErr(content) {
 	console.log("====== TEST ERROR =======");
 	var contentTest = new ContentModel(12);
 	console.dir(contentTest);
-
 	return testCreate(12)
 		.then(console.log, function(err) {
 			logError(err);
@@ -197,15 +195,15 @@ function logError(err) {
 			logError(err);
 			return Promise.reject(new Error("========== TESTS PHASE 1 : KO =========="));
 		})
-		// .then(testErr)
-		// .then(function() {
-		// 	console.log("========== TESTS PHASE 2 : OK ==========");
-		// }, function(err) {
-		// 	return Promise.reject((!!err) ? err : new Error("========== TESTS PHASE 2 : KO =========="));
-		// })
-		// .then(function() {
-		// 	console.log("========== FIN TESTS ==========");
-		// }, function(err) {
-		// 	console.log(err.message);
-		// });
+		.then(testErr)
+		.then(function() {
+		console.log("========== TESTS PHASE 2 : OK ==========");
+		}, function(err) {
+		return Promise.reject((!!err) ? err : new Error("========== TESTS PHASE 2 : KO =========="));
+		})
+		.then(function() {
+		console.log("========== FIN TESTS ==========");
+		}, function(err) {
+		console.log(err.message);
+		});
 })();
