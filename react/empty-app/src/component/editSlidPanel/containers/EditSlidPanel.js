@@ -9,12 +9,7 @@ class EditSlidPanel extends Component {
         super(props);
     }
     
-    onChange() {
-        this.setState({ checked: !this.state.checked });
-        console.log('onChange');
-    }
 
-    
     render() {
       return (
               <div className="editSlidPanel"> 
