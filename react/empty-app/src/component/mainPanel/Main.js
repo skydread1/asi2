@@ -35,13 +35,13 @@ export default class Main extends React.Component {
 
         //send action to the store for update the current presentation
         store.dispatch(updatePresentation(contentPres));
-        store.subscribe(() => {
+        /*store.subscribe(() => {
             this.setState({ presentation: store.getState().updateModelReducer.presentation });
             this.setState({ contentMap: store.getState().updateModelReducer.content_map });
-            /*if (store.getState().commandReducer.cmdPres == 'SAVE_CMD') {
+            if (store.getState().commandReducer.cmdPres == 'SAVE_CMD') {
                 this.comm.savPres(store.getState().updateModelReducer.presentation, this.callbackErr);
-            }*/
-        });
+            }
+        });*/
 
         // Bind local function to the current object
         this.loadContentUpdate = this.loadContentUpdate.bind(this);
