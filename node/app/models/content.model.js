@@ -19,6 +19,11 @@ class ContentModel{
 
     }
 
+    /*
+    Input:Object ContentModel
+    Output: -[contentModel.id].meta.json that contains the metadata
+            -if type='img',[content.fileName] that contains [content.data]      
+    */
     static create(content,callback){
         //Vérification du type de l'object
         if(typeof content!="object") return callback();
@@ -36,12 +41,16 @@ class ContentModel{
                     if (err) {
                         return callback(err);
                     };
-                    callback();
+                    callback("Creation Content Model reussie");
                 })  
             }
         }); 
     }
  
+    /*
+    Input: id
+    Output: Object ContentModel from [contentModel.id].meta.json
+    */
     static read(id,callback){
         let pathFile=utils.getMetaFilePath(id);
         utils.readFileIfExists(pathFile, function(err,file){
@@ -52,7 +61,11 @@ class ContentModel{
         });
     }
 
-
+    /*
+    Input: ObjectModel
+    Ouput: -Update the metadata file [contentModel.id].meta.json
+           -if type='img', update [content.fileName]
+    */
     static update(content,callback){
         ContentModel.read(content.id,function(err,objContent){
             if(err){
@@ -67,6 +80,11 @@ class ContentModel{
         })
     }
 
+    /*
+    Input: id
+    Ouput: -Delete the metadata file [contentModel.id].meta.json
+           -if type='img', delete [content.fileName]
+    */
     static delete(id,callback){
 
         ContentModel.read(id,function(err,objContent){

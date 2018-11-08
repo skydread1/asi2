@@ -1,16 +1,14 @@
-// default.route.js
 var express = require("express");
 var router = express.Router();
 var fs = require('fs');
 var path = require('path');
 var CONFIG = require("../../config.json");
+var utils=require("../utils/utils.js");
+var ContentModel=require("../models/content.model");
 
-
-module.exports = router;
-// TODO : Routing using
-router.route('/loadPres')
-    .get(function (request, response) {
-        fs.readdir(CONFIG.presentationDirectory, function (err, data) {
+const contentController={
+    list(request,response){    
+        fs.readdir(CONFIG.contentDirectory, function (err, data) {
             if (err) {
                 response.end(err);
             }
@@ -25,15 +23,14 @@ router.route('/loadPres')
                     toRead.push(fileName);
                 }
             });
-
             var read = [] //just to check the length to synchronize the asynch requests
             var result = {} //json content
             toRead.forEach(function (element) {
-                var url = CONFIG.presentationDirectory + element;
+                var url = CONFIG.contentDirectory + element;
                 fs.readFile(url, 'utf8', function (err, data) {
                     data = JSON.parse(data)
                     if (err) {
-                        response.end("Erreur lecture fichier PresentationDirectory");
+                        response.end(err.message);
                         return
                     }
                     read.push(url);
@@ -44,31 +41,42 @@ router.route('/loadPres')
                     }
                 });
             });
-        });
-    });
-
-router.route("/savePres")
-    .post(function (request, response) { 
+        })
+    },
+    create(request,response){
         let body = "";
         let chaine;
         request.on("data", (chunk) => {
             body += chunk;
         });
-
         request.on("end", () => {
             
             let json=JSON.parse(body);
-            let id=json["id"];
-            let urlJson=CONFIG.presentationDirectory+'/'+id+'.pres.json';
-            
-            fs.writeFile(urlJson,body,'utf8',(err)=>{
-                if (err) {
-                    console.error(err);
-                    return;
-                };
-                console.log('fichier enregistré');
-                response.send(json);
-            })  
+            const ctModel=new ContentModel(json);
+            ContentModel.create(ctModel,function(err){
+                if(err) response.send(err);
+            });
         })   
+    },
+    read(request,response){
+        console.log(request.contentId);
+    }
+
+}
+
+module.exports = contentController;
+
+/*
+        var id=request.params.contentId;
+        let url=CONFIG.contentDirectory+id+'.meta.json';
+        utils.readFileIfExists(url, function (err, data) {         
+            if (err) {
+                response.end("Erreur: l'ID n'existe pas");
+                return
+            }
+            data = JSON.parse(data)
+            response.json(data);
+            response.end()
+        });
         
-    })
+*/
