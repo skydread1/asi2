@@ -12,25 +12,25 @@ class Slid extends Component {
         this.updateSelectedSlid=this.updateSelectedSlid.bind(this);
         this.updateCurrentSlid=this.updateCurrentSlid.bind(this);
         this.handleChangeTitle=this.handleChangeTitle.bind(this);
-        this.handleChangeText=this.handleChangeText.bind(this);
+        this.handleChangeTxt=this.handleChangeTxt.bind(this);
     }
 
-    ///handle title
+    ///handle title change
     handleChangeTitle = (e) =>{
-        this.updateCurrentSlid();
+        this.updateCurrentSlid(e.target.value, this.props.slid.txt);
     }
 
-    //handle text
-    handleChangeText = (e) =>{
-        this.updateCurrentSlid();
+    //handle text change
+    handleChangeTxt = (e) =>{
+        this.updateCurrentSlid(this.props.slid.title, e.target.value);
     }
 
-    //action: on change, uodate the slid in presentation
-    updateCurrentSlid(){
+    //action: when the slide title or txt is changed, update the slide in the listSLid in the presentation (leftpart)
+    updateCurrentSlid(titleEntered, txtEntered){
         const tmpSlid2 = {
             id: this.props.slid.id,
-            title: this.props.slid.title,
-            txt: this.props.slid.txt,
+            title: titleEntered,
+            txt: txtEntered,
             content_id: this.props.slid.content_id
         };
         this.props.dispatch(updateSlid(tmpSlid2)); 
@@ -73,7 +73,7 @@ class Slid extends Component {
                     title = {this.props.slid.title}
                     txt = {this.props.slid.txt}
                     handleChangeTitle = {this.handleChangeTitle}
-                    handleChangeText = {this.handleChangeText}
+                    handleChangeTxt = {this.handleChangeTxt}
                     />
                 );
                 break;
