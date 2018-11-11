@@ -1,3 +1,5 @@
+'use strict';
+
 var fs = require('fs');
 var CONFIG = require("../../config.json");
 var utils=require("../utils/utils.js");
