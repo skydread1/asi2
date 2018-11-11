@@ -6,6 +6,11 @@
 *Liste des parties du tp réalisée (OK, partiellement OK)
 React:
 
+-STEP 1 : OK
+-STEP 2 : OK
+-STEP 3 : OK
+-STEP 5 : partiellement OK
+
 Node:
 -PT1:OK
 -PT2:OK
@@ -20,13 +25,19 @@ Node:
 J2E:
 
 *Liste des parties du tp non traitées
+React:
+-création d'un service de communication
 
 
-*Commentaires, tous les éléments supplémentaires que vous avez réalisés et que vous estimez être un "plus" pour votre projet
+Node:
+-Connexion avec la socket.io
+
+J2E:
+
 
 
 *Screen cast (video) du fonctionnement du projet (lien youtube)
-
+https://www.youtube.com/watch?v=IxS2B_9dujM
 
 *Lien vers votre git:
 https://github.com/skydread1/asi2.git
