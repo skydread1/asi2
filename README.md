@@ -6,6 +6,11 @@
 *Liste des parties du tp réalisée (OK, partiellement OK)
 React:
 
+-STEP 1 : OK
+-STEP 2 : OK
+-STEP 3 : OK
+-STEP 5 : partiellement OK
+
 Node:
 -PT1:OK
 -PT2:OK
@@ -21,6 +26,8 @@ J2E:
 
 *Liste des parties du tp non traitées
 React:
+-création d'un service de communication
+
 
 Node:
 -Connexion avec la socket.io
