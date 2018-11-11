@@ -1,3 +1,4 @@
+'use strict';
 console.log('It Works !')
 
 var CONFIG = require("./config.json");
@@ -7,9 +8,11 @@ process.env.CONFIG = JSON.stringify(CONFIG);
 var path = require("path");
 var http = require("http");
 var express = require("express");
+//var multer = require('multer');
 var defaultRoute = require("./app/routes/default.route.js");
 var contentRoute = require("./app/routes/content.route.js");
 var presentationRoute = require("./app/routes/presentation.route.js");
+var IOControllerModule = require("./app/controllers/io.controller.js");
 
 // init server
 var app = express();
@@ -24,4 +27,9 @@ app.use(presentationRoute);
 app.use("/admin", express.static(path.join(__dirname, "public/admin")));
 app.use("/watch", express.static(path.join(__dirname, "public/watch")));
 
-server.listen(CONFIG.port);
+//server.listen(CONFIG.port);
+
+//add iosocket
+var IOController = new IOControllerModule.IOController();
+IOController.listen(server);
+IOController.connection(server);
