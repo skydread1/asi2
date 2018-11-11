@@ -20,13 +20,17 @@ Node:
 J2E:
 
 *Liste des parties du tp non traitées
+React:
 
+Node:
+-Connexion avec la socket.io
 
-*Commentaires, tous les éléments supplémentaires que vous avez réalisés et que vous estimez être un "plus" pour votre projet
+J2E:
+
 
 
 *Screen cast (video) du fonctionnement du projet (lien youtube)
-
+https://www.youtube.com/watch?v=IxS2B_9dujM
 
 *Lien vers votre git:
 https://github.com/skydread1/asi2.git
