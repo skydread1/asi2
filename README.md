@@ -18,7 +18,7 @@ Node:
 -PT4:OK
 -PT5:OK
 -PT6:OK
--PT7:
+-PT7:OK
 -PT8:
 -PT9:
 
