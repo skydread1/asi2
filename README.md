@@ -23,6 +23,8 @@ Node:
 -PT9:KO
 
 J2E:
+-STEP 1 : OK
+-STEP 2 : partiellement OK
 
 *Liste des parties du tp non traitées
 React:
@@ -33,6 +35,7 @@ Node:
 -Connexion avec la socket.io
 
 J2E:
+-EJB Session Sender et Receiver codés mais pas testés
 
 
 
