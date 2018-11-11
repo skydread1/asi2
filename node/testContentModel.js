@@ -31,7 +31,6 @@ function countFile() {
 function testCreate(content) {
 	console.log("====== TEST CREATE =======");
 	console.dir(content);
-
 	return new Promise((resolve, reject) => {
 		const nbFiles = countFile();
 		ContentModel.create(content, function(err) {
@@ -39,7 +38,6 @@ function testCreate(content) {
 				console.error(err);
 				return reject(err);
 			}
-
 			if (countFile() - nbFiles !== 2) {
 				return reject(new Error('Les fichiers n\'ont pas été créés correctement'));
 			}
@@ -132,8 +130,7 @@ function testDelete(content) {
 				console.error(err);
 				return reject(err);
 			}
-			//if (nbFiles - countFile() !== 2) Pourquoi c'est 2?
-			if (nbFiles - countFile() !== 0) {
+			if (nbFiles - countFile() !== 2) {
 				return reject(new Error('Probleme lors de la suppression des fichiers'));
 			}
 

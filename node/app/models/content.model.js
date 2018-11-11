@@ -1,3 +1,5 @@
+'use strict';
+
 var fs = require('fs');
 var CONFIG = require("../../config.json");
 var utils=require("../utils/utils.js");
@@ -30,22 +32,31 @@ class ContentModel{
         if(typeof content!="object") return callback();
         let jsonObj=JSON.stringify(content);
         let urlMeta=CONFIG.contentDirectory+'/'+content.id+'.meta.json';
-        fs.writeFile(urlMeta,jsonObj,'utf8',(err)=>{
-            if (err) {
-                return callback(err);
-            };
-            if(content.type!=='video' && content.type!=='img_url' && content.type!=='web')
-            {
-                let data=content.getData();
-                let url=CONFIG.contentDirectory+'/'+content.fileName;
-                fs.writeFile(url,data,'utf8',(err)=>{
-                    if (err) {
-                        return callback(err);
-                    };
-                    callback("Creation Content Model reussie");
-                })  
-            }
-        }); 
+        if(content.type!=='video' && content.type!=='img_url' && content.type!=='web')
+        {
+            fs.writeFile(urlMeta,jsonObj,'utf8',(err)=>{
+                if (err) {
+                    return callback(err);
+                };
+                    let data=content.getData();
+                    let url=CONFIG.contentDirectory+content.fileName;
+                    fs.writeFile(url,data,'utf8',(err)=>{
+                        if (err) {
+                            return callback(err);
+                        };
+                        callback();
+                    })  
+                
+            }); 
+        }
+        else{
+            fs.writeFile(urlMeta,jsonObj,'utf8',(err)=>{
+                if (err) {
+                    return callback(err);
+                };
+                callback();
+            }); 
+        }
     }
  
     /*
@@ -94,14 +105,14 @@ class ContentModel{
             }
             let path=utils.getMetaFilePath(id);
             fs.unlink(path,function(err){
-                if(err) return callback(err);
-            })
-            let pathDel=utils.getDataFilePath(objContent.fileName);
-            fs.unlink(pathDel,function(err){
-                if(err) return callback(err);
-            })
+                if(err) return callback(err); 
+                let pathDel=utils.getDataFilePath(objContent.fileName);
+                fs.unlink(pathDel,function(err){
+                    if(err) return callback(err);
+                    callback();
+                })
+            })  
         })
-        callback();
     }
 }
 

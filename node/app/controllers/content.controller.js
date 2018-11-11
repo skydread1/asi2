@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require("express");
 var router = express.Router();
 var fs = require('fs');
@@ -93,18 +95,3 @@ const contentController={
 }
 
 module.exports = contentController;
-
-/*
-        var id=request.params.contentId;
-        let url=CONFIG.contentDirectory+id+'.meta.json';
-        utils.readFileIfExists(url, function (err, data) {         
-            if (err) {
-                response.end("Erreur: l'ID n'existe pas");
-                return
-            }
-            data = JSON.parse(data)
-            response.json(data);
-            response.end()
-        });
-        
-*/
