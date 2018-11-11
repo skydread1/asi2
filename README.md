@@ -19,8 +19,8 @@ Node:
 -PT5:OK
 -PT6:OK
 -PT7:OK
--PT8:
--PT9:
+-PT8:OK Partiellement
+-PT9:KO
 
 J2E:
 
