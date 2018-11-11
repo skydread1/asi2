@@ -52,6 +52,7 @@ const contentController={
         request.on("end", () => {
             
             let json=JSON.parse(body);
+            //Attend une getData() non null en cas de 'img' ! Manquant!
             const ctModel=new ContentModel(json);
             ContentModel.create(ctModel,function(err){
                 if(err) response.send(err);
@@ -60,6 +61,33 @@ const contentController={
     },
     read(request,response){
         console.log(request.contentId);
+        ContentModel.read(request.contentId, function(err,ctModel){
+            if(err)
+            {
+                response.send("Erreur ID");
+                return
+            } 
+            if(request.query.json==='true'){
+                var url = CONFIG.contentDirectory +ctModel.id+'.meta.json';
+                fs.readFile(url, 'utf8', function (err, data) {
+                data = JSON.parse(data)
+                if (err) {
+                    response.end("Erreur lecture fichier PresentationDirectory");
+                    return
+                }
+                response.json(data);
+                response.end()
+                });
+            }
+            else if(ctModel.type==='img'){
+                let urlimg=CONFIG.contentDirectory+ctModel.fileName;
+                console.log(urlimg);
+                response.sendFile(path.resolve(path.resolve(__dirname,'../../'+urlimg)));
+            }
+            else{
+                response.redirect(ctModel.src);
+            }
+        });  
     }
 
 }

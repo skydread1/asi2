@@ -26,7 +26,6 @@ router.param('contentId',function(req,res,next,id){
     next();
 });
 
-
 //router.post("/contents", multerMiddleware.single("file"), contentController.create);
 /**
  * Multer ajoute à l'objet `request` la propriété `file` qui contient plusieurs informations comme:
