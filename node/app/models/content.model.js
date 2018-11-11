@@ -11,7 +11,8 @@ class ContentModel{
         this.src=src;
         let data;
         this.getData = () => {
-            return data;
+            if(data!=null)  return data;
+            else return null;
         };
         this.setData = (pData) => {
             data = pData;

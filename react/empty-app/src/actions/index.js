@@ -41,3 +41,10 @@ export const updateSlid = (slid_obj) => {
         obj: slid_obj
     };
 }
+
+export const updateDraggedElt = (content_obj) => {
+    return {
+        type: 'UPDATE_SELECTED_CONTENT',
+        obj: content_obj
+    };
+}

@@ -42,21 +42,21 @@ export default class Main extends React.Component {
                 this.comm.savPres(store.getState().updateModelReducer.presentation, this.callbackErr);
             }
         });*/
-
+        
         // Bind local function to the current object
-        this.loadContentUpdate = this.loadContentUpdate.bind(this);
+        /*this.loadContentUpdate = this.loadContentUpdate.bind(this);
         this.loadPresUpdate = this.loadPresUpdate.bind(this);
-        this.callbackErr = this.callbackErr.bind(this);
+        this.callbackErr = this.callbackErr.bind(this);*/
 
         //FIRST ACTIONS
         // try to load the contentMap from the server
-        this.comm.loadContent(this.loadContentUpdate, this.callbackErr);
+        //this.comm.loadContent(this.loadContentUpdate, this.callbackErr);
         // try to load the presentation from the server
-        this.comm.loadPres(0, this.loadPresUpdate, this.callbackErr);
+       // this.comm.loadPres(0, this.loadPresUpdate, this.callbackErr);
         // create the sokect connection between the server and the web browser
-        this.comm.socketConnection(this.state.uuid);
+        //this.comm.socketConnection(this.state.uuid);
     }
-    loadContentUpdate(data) {
+    /*loadContentUpdate(data) {
         //send action to the store for update the current contentMap 
         store.dispatch(updateContentMap(data));
     }
@@ -67,7 +67,7 @@ export default class Main extends React.Component {
     callbackErr(msg) {
         console.error('Network Failure ?');
         console.error(msg);
-    }
+    }*/
 
 render() {
     return (

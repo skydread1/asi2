@@ -13,6 +13,8 @@ class Slid extends Component {
         this.updateCurrentSlid=this.updateCurrentSlid.bind(this);
         this.handleChangeTitle=this.handleChangeTitle.bind(this);
         this.handleChangeTxt=this.handleChangeTxt.bind(this);
+        this.drop=this.drop.bind(this);
+        this.allowDrop=this.allowDrop.bind(this);
     }
 
     ///handle title change
@@ -23,6 +25,18 @@ class Slid extends Component {
     //handle text change
     handleChangeTxt = (e) =>{
         this.updateCurrentSlid(this.props.slid.title, e.target.value);
+    }
+
+    //allow the drop of the content
+    allowDrop = (ev) =>{
+        ev.preventDefault();
+    }
+
+    //drop the content and update the slide
+    drop = (ev) =>{
+        ev.preventDefault();
+        let data = ev.dataTransfer.getData("content");
+        //this.updateSelectedSlid();
     }
 
     //action: when the slide title or txt is changed, update the slide in the listSLid in the presentation (leftpart)
@@ -95,7 +109,10 @@ class Slid extends Component {
         const display_content = this.getContentMap();
         return (
             <div className="shortContent" 
-            onClick={()=>{this.updateSelectedSlid()}}>
+                 onClick={()=>{this.updateSelectedSlid()}}
+                 onDrop={(e)=>{this.drop(e)}}
+                 onDragOver={(e)=>{this.allowDrop(e)}}
+            >
                 {short_content}
                 {display_content}
             </div>
@@ -105,8 +122,14 @@ class Slid extends Component {
 
 const mapStateToProps = (state, ownProps) => {
 
+    //let mySlid = ownProps.slid;
+    /*if(state.selectedReducer.content.id !== undefined){
+        mySlid = state.selectedReducer.slid;
+        mySlid.content_id = state.selectedReducer.content.id
+    }*/
     return {
-        contentMap: state.updateModelReducer.content_map
+        contentMap: state.updateModelReducer.content_map,
+        //slid:  mySlid
     }
 };
 

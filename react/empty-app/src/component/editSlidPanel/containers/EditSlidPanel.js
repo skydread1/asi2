@@ -26,7 +26,11 @@ const mapStateToProps = (state, ownProps) => {
     let mySelectedSlid = {};
     for (let slidTmp in state.updateModelReducer.presentation.slidArray) {
         if (state.updateModelReducer.presentation.slidArray[slidTmp].id === state.selectedReducer.slid.id) {
-            mySelectedSlid = state.updateModelReducer.presentation.slidArray[slidTmp];
+            mySelectedSlid = state.updateModelReducer.presentation.slidArray[slidTmp]; 
+            if(state.selectedReducer.content.id !== undefined){
+                mySelectedSlid.content_id = state.selectedReducer.content.id;
+                console.log("test" + mySelectedSlid.content_id);
+            }   
         }
     }
 

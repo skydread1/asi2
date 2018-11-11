@@ -33,8 +33,7 @@ class Comm{
         })
         .catch(function (error) {
             callbackErr(error);
-        });
-            
+        });      
     }
     
     loadContent(callback,callbackErr){
